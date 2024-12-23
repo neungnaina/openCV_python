@@ -1,18 +1,22 @@
 import cv2
 
-def show_webcam(mirror=False):
-  cam = cv2.VideoCapture(0)
-  while True:
+cap = cv2.VideoCapture(0)
 
-    ret_val, img = cam.read()
-    if mirror:
+if not cap.isOpened():
+    print("ข้อผิดพลาด: ไม่สามารถเข้าถึงกล้องเว็บแคมได้")
+    exit()
 
-      img = cv2.flip(img, 1)
-      cv2.imshow('My Webcam', img)
+while True:
+    check, frame = cap.read() 
 
-      if cv2.waitKey(1) == 27:
+    if not check:
+        print("ข้อผิดพลาด: ไม่สามารถอ่านเฟรมได้")
         break
 
-cv2.destroyAllWindows()
+    cv2.imshow("output", frame)
 
-show_webcam(mirror=True)
+    if cv2.waitKey(1) & 0xFF == ord('e'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
