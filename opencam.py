@@ -1,6 +1,8 @@
 import cv2
 # เริ่มต้นการจับภาพจากกล้องเว็บแคม
 cap = cv2.VideoCapture(0)
+address= "http://10.195.44.44:8080/video"
+cap.open(address)
 # ตรวจสอบว่ากล้องสามารถเปิดใช้งานได้หรือไม่
 if not cap.isOpened():
     print("ข้อผิดพลาด: ไม่สามารถเข้าถึงกล้องเว็บแคมได้")
