@@ -2,7 +2,7 @@ import cv2
 
 # โหลด cascade classifier
 faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
-
+eyeCascade = cv2.CascadeClassifier("eye.xml")
 # ฟังก์ชันวาดกรอบและเพิ่มข้อความ
 def draw_boundary(img, classifier, scaleFactor, minNeighbors, color, text):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -15,6 +15,7 @@ def draw_boundary(img, classifier, scaleFactor, minNeighbors, color, text):
 # ฟังก์ชันตรวจจับใบหน้า
 def detect(img, faceCascade):
     img = draw_boundary(img, faceCascade, 1.1, 10, (0, 255, 0), "Face")
+    img = draw_boundary(img, eyeCascade, 1.1, 25, (155, 0, 0), "eye")
     return img
 # โหลดวิดีโอ
 
