@@ -3,6 +3,7 @@ import cv2
 faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 eyeCascade = cv2.CascadeClassifier("eye.xml")
 noseCascade = cv2.CascadeClassifier("nose.xml")
+mouthCascade = cv2.CascadeClassifier("mouth.xml")
 # ฟังก์ชันวาดกรอบและเพิ่มข้อความ
 def draw_boundary(img, classifier, scaleFactor, minNeighbors, color, text):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -18,6 +19,7 @@ def detect(img, faceCascade):
     img = draw_boundary(img, faceCascade, 1.1, 5, (0, 255, 0), "Face")
     img = draw_boundary(img, eyeCascade, 1.1, 5, (155, 0, 0), "eye")
     img = draw_boundary(img, noseCascade, 1.1, 30, (0, 0, 255), "nose")
+    img = draw_boundary(img, mouthCascade, 1.1, 40, (70, 0, 100), "mouth")
     return img
 # อ่านภาพจากไฟล์
 
